@@ -37,8 +37,8 @@ public final class CruiseSign implements Listener {
             if (!(state instanceof Sign))
                 continue;
             Sign sign = (Sign) state;
-            if (ChatColor.stripColor(sign.getLine(0)).equalsIgnoreCase("Cruise: ON")) {
-                sign.setLine(0, "Cruise: OFF");
+            if (ChatColor.stripColor(sign.getLine(0)).equalsIgnoreCase("Круїз: ВКЛ")) {
+                sign.setLine(0, "Круїз: ВИКЛ");
                 sign.update();
             }
         }
@@ -55,14 +55,14 @@ public final class CruiseSign implements Listener {
 
         Sign sign = (Sign) state;
         String line = ChatColor.stripColor(sign.getLine(0));
-        if (line.equalsIgnoreCase("Cruise: OFF")) {
+        if (line.equalsIgnoreCase("Круїз: ВИКЛ")) {
             Craft c = CraftManager.getInstance().getCraftByPlayer(event.getPlayer());
             if (c == null || !c.getType().getBoolProperty(CraftType.CAN_CRUISE))
                 return;
             if (!(sign.getBlockData() instanceof WallSign))
                 return;
 
-            sign.setLine(0, "Cruise: ON");
+            sign.setLine(0, "Круїз: ВКЛ");
             sign.update(true);
 
             c.setCruiseDirection(CruiseDirection.fromBlockFace(((WallSign) sign.getBlockData()).getFacing()));
@@ -73,12 +73,12 @@ public final class CruiseSign implements Listener {
                 CraftManager.getInstance().addReleaseTask(c);
             }
         }
-        else if (line.equalsIgnoreCase("Cruise: ON")) {
+        else if (line.equalsIgnoreCase("Круїз: ВКЛ")) {
             Craft c = CraftManager.getInstance().getCraftByPlayer(event.getPlayer());
             if (c == null || !c.getType().getBoolProperty(CraftType.CAN_CRUISE))
                 return;
 
-            sign.setLine(0, "Cruise: OFF");
+            sign.setLine(0, "Круїз: ВКЛ");
             sign.update(true);
             c.setCruising(false);
             c.resetSigns(sign);
@@ -91,7 +91,7 @@ public final class CruiseSign implements Listener {
         String line = ChatColor.stripColor(event.getLine(0));
         if (line == null)
             return;
-        if (!line.equalsIgnoreCase("Cruise: OFF") && !line.equalsIgnoreCase("Cruise: ON"))
+        if (!line.equalsIgnoreCase("Круїз: ВИКЛ") && !line.equalsIgnoreCase("Круїз: ВКЛ"))
             return;
         if (player.hasPermission("movecraft.cruisesign") || !Settings.RequireCreatePerm)
             return;

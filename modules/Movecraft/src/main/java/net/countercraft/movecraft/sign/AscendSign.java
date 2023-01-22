@@ -32,8 +32,8 @@ public class AscendSign implements Listener {
             BlockState state = block.getState();
             if(block.getState() instanceof Sign){
                 Sign sign = (Sign) block.getState();
-                if (ChatColor.stripColor(sign.getLine(0)).equalsIgnoreCase("Ascend: ON")) {
-                    sign.setLine(0, "Ascend: OFF");
+                if (ChatColor.stripColor(sign.getLine(0)).equalsIgnoreCase("Підйом: ВКЛ")) {
+                    sign.setLine(0, "Підйом: ВИКЛ");
                     sign.update();
                 }
             }
@@ -51,7 +51,7 @@ public class AscendSign implements Listener {
             return;
         }
         Sign sign = (Sign) event.getClickedBlock().getState();
-        if (ChatColor.stripColor(sign.getLine(0)).equalsIgnoreCase("Ascend: OFF")) {
+        if (ChatColor.stripColor(sign.getLine(0)).equalsIgnoreCase("Підйом: ВИКЛ")) {
             if (CraftManager.getInstance().getCraftByPlayer(event.getPlayer()) == null) {
                 return;
             }
@@ -60,7 +60,7 @@ public class AscendSign implements Listener {
                 return;
             }
             //c.resetSigns(true, false, true);
-            sign.setLine(0, "Ascend: ON");
+            sign.setLine(0, "Підйом: ВКЛ");
             sign.update(true);
 
             c.setCruiseDirection(CruiseDirection.UP);
@@ -73,14 +73,14 @@ public class AscendSign implements Listener {
             }
             return;
         }
-        if (!ChatColor.stripColor(sign.getLine(0)).equalsIgnoreCase("Ascend: ON")) {
+        if (!ChatColor.stripColor(sign.getLine(0)).equalsIgnoreCase("Підйом: ВКЛ")) {
             return;
         }
         Craft c = CraftManager.getInstance().getCraftByPlayer(event.getPlayer());
         if (c == null || !c.getType().getBoolProperty(CraftType.CAN_CRUISE)) {
             return;
         }
-        sign.setLine(0, "Ascend: OFF");
+        sign.setLine(0, "Підйом: ВИКЛ");
         sign.update(true);
 
         c.setCruising(false);

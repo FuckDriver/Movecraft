@@ -31,8 +31,8 @@ public final class DescendSign implements Listener{
             BlockState state = block.getState();
             if(state instanceof Sign){
                 Sign sign = (Sign) state;
-                if (ChatColor.stripColor(sign.getLine(0)).equalsIgnoreCase("Descend: ON")) {
-                    sign.setLine(0, "Descend: OFF");
+                if (ChatColor.stripColor(sign.getLine(0)).equalsIgnoreCase("Спуск: ВКЛ")) {
+                    sign.setLine(0, "Спуск: ВИКЛ");
                     sign.update();
                 }
             }
@@ -49,7 +49,7 @@ public final class DescendSign implements Listener{
             return;
         }
         Sign sign = (Sign) state;
-        if (ChatColor.stripColor(sign.getLine(0)).equalsIgnoreCase("Descend: OFF")) {
+        if (ChatColor.stripColor(sign.getLine(0)).equalsIgnoreCase("Спуск: ВИКЛ")) {
             if (CraftManager.getInstance().getCraftByPlayer(event.getPlayer()) == null) {
                 return;
             }
@@ -58,7 +58,7 @@ public final class DescendSign implements Listener{
                 return;
             }
             //c.resetSigns(true, true, false);
-            sign.setLine(0, "Descend: ON");
+            sign.setLine(0, "Спуск: ВКЛ");
             sign.update(true);
 
             c.setCruiseDirection(CruiseDirection.DOWN);
@@ -71,10 +71,10 @@ public final class DescendSign implements Listener{
             }
             return;
         }
-        if (ChatColor.stripColor(sign.getLine(0)).equalsIgnoreCase("Descend: ON")) {
+        if (ChatColor.stripColor(sign.getLine(0)).equalsIgnoreCase("Спуск: ВКЛ")) {
             Craft c = CraftManager.getInstance().getCraftByPlayer(event.getPlayer());
             if (c != null && c.getType().getBoolProperty(CraftType.CAN_CRUISE)) {
-                sign.setLine(0, "Descend: OFF");
+                sign.setLine(0, "Спуск: ВИКЛ");
                 sign.update(true);
                 c.setCruising(false);
                 c.resetSigns(sign);

@@ -21,7 +21,7 @@ public final class HelmSign implements Listener {
 
     @EventHandler
     public void onSignChange(SignChangeEvent event){
-        if (!ChatColor.stripColor(event.getLine(0)).equalsIgnoreCase("[helm]")) {
+        if (!ChatColor.stripColor(event.getLine(0)).equalsIgnoreCase("[Штурвал]")) {
             return;
         }
         event.setLine(0, "\\  ||  /");
